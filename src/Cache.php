@@ -29,6 +29,9 @@ class Cache
      */
     public function __construct(CacheManager $cache, $tags, $expires = 30)
     {
+        if (strstr(config('cache.default'), 'file') || strstr(config('cache.default'), 'database')) {
+            config(['cache.default' => 'array']);
+        }
         $this->cache = $tags ? $cache->tags($tags) : $cache;
         $this->expires = $expires;
     }
