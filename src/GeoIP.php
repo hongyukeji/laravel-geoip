@@ -239,7 +239,9 @@ class GeoIP
             'HTTP_X_CLUSTER_CLIENT_IP',
         ];
 
-        if (version_compare(PHP_VERSION, '7.1.13', '>=') && version_compare(PHP_VERSION, '7.2.10', '<=')) {
+        if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN'
+            && version_compare(PHP_VERSION, '7.1.13', '>=')
+            && version_compare(PHP_VERSION, '7.2.10', '<=')) {
             array_splice($remotes_keys, array_search('REMOTE_ADDR', $remotes_keys), 1);
         }
 
