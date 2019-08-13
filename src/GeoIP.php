@@ -235,7 +235,7 @@ class GeoIP
             'HTTP_X_FORWARDED',
             'HTTP_FORWARDED_FOR',
             'HTTP_FORWARDED',
-            'REMOTE_ADDR',
+            //'REMOTE_ADDR',
             'HTTP_X_CLUSTER_CLIENT_IP',
         ];
 
