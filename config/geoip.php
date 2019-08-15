@@ -38,7 +38,7 @@ return [
     |
     */
 
-    'service' => 'ipapi',
+    'service' => 'baidu',
 
     /*
     |--------------------------------------------------------------------------
@@ -84,6 +84,12 @@ return [
         'ipdata' => [
             'class'  => \Torann\GeoIP\Services\IPData::class,
             'key'    => env('IPDATA_API_KEY'),
+            'secure' => true,
+        ],
+
+        'baidu' => [
+            'class'  => \Torann\GeoIP\Services\BaiDu::class,
+            'key'    => env('BAIDU_API_KEY'),
             'secure' => true,
         ],
 
