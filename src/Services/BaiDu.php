@@ -27,6 +27,7 @@ class BaiDu extends AbstractService
             'base_uri' => 'https://api.map.baidu.com/location/ip',
             'query' => [
                 'ak' => $this->config('key'),
+                'coor' => $this->config('coor'),
             ],
         ]);
     }

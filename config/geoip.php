@@ -91,6 +91,7 @@ return [
             'class'  => \Torann\GeoIP\Services\BaiDu::class,
             'key'    => env('BAIDU_API_KEY'),
             'secure' => true,
+            'coor' => 'bd09ll',
         ],
 
     ],
