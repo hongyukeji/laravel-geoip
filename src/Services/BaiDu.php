@@ -55,6 +55,7 @@ class BaiDu extends AbstractService
             throw new Exception('Request failed (' . $json->message . ')');
         }
 
+        // Doc: http://lbsyun.baidu.com/index.php?title=webapi/ip-api
         $address = explode("|", $json->address);
 
         try {
