@@ -21,7 +21,8 @@
   "require": {
     "php": "^7.0",
     "illuminate/support": "~5.0",
-    "illuminate/console": "~5.0"
+    "illuminate/console": "~5.0",
+    "overtrue/laravel-pinyin": "^4.0"
   },
   "suggest": {
     "geoip2/geoip2": "Required to use the MaxMind database or web service with GeoIP (~2.1).",

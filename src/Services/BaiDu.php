@@ -3,6 +3,7 @@
 namespace Torann\GeoIP\Services;
 
 use Exception;
+use Illuminate\Support\Facades\Log;
 use Torann\GeoIP\Support\HttpClient;
 use Torann\GeoIP\Services\AbstractService;
 
@@ -48,21 +49,33 @@ class BaiDu extends AbstractService
         // Parse body content
         $json = json_decode($data[0]);
 
+        // Verify response status
+        if ($json->status !== 0) {
+            throw new Exception('Request failed (' . $json->message . ')');
+        }
+
         $address = explode("|", $json->address);
 
-        return [
+        try {
+            $province = ucwords(implode('', pinyin($address[1], PINYIN_DEFAULT)));
+        } catch (Exception $e) {
+            $province = $address[1];
+        }
+
+        return $this->hydrate([
             'ip' => $ip,
             'iso_code' => $address[0],
-            'country' => $address[1],
+            'country' => '中国',
             'city' => $address[2],
-            'state' => $json->state ?? '',
-            'state_name' => $json->state_name ?? '',
-            'postal_code' => $json->content->city_code ?? '',
-            'lat' => $json->point->y,
-            'lon' => $json->point->x,
-            'timezone' => $json->timezone ?? '',
-            'continent' => $json->continent ?? '',
-        ];
+            'state' => $province,
+            'state_name' => $address[1],
+            'postal_code' => $json->content->address_detail->city_code,
+            'lat' => $json->content->point->y,
+            'lon' => $json->content->point->x,
+            'timezone' => 'Asia/Shanghai',
+            'continent' => 'Asia',
+            'currency' => 'RMB',
+        ]);
     }
 
     /**
