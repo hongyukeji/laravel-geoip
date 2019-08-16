@@ -68,9 +68,9 @@ class BaiDu extends AbstractService
             'iso_code' => $address[0],
             'country' => '中国',
             'city' => $address[2],
-            'state' => $address[1],
-            'state_name' => $province,
-            'postal_code' => $json->content->address_detail->city_code,
+            'state' => $province,
+            'state_name' => $address[1],
+            'postal_code' => '000000',  // $json->content->address_detail->city_code
             'lat' => $json->content->point->y,
             'lon' => $json->content->point->x,
             'timezone' => 'Asia/Shanghai',
