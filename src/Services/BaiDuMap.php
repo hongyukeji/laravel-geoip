@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Log;
 use Torann\GeoIP\Support\HttpClient;
 use Torann\GeoIP\Services\AbstractService;
 
-class BaiDu extends AbstractService
+class BaiDuMap extends AbstractService
 {
     /**
      * Http client instance.
