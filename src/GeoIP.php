@@ -78,7 +78,7 @@ class GeoIP
     /**
      * Create a new GeoIP instance.
      *
-     * @param array        $config
+     * @param array $config
      * @param CacheManager $cache
      */
     public function __construct(array $config, CacheManager $cache)
@@ -157,17 +157,13 @@ class GeoIP
                 $location->default = false;
 
                 return $location;
-            }
-            catch (\Exception $e) {
+            } catch (\Exception $e) {
                 if ($this->config('log_failures', true) === true) {
-                    $log = new Logger('geoip');
-                    $log->pushHandler(new StreamHandler(storage_path('logs/geoip.log'), Logger::ERROR));
-                    try {
-                        $log->addError($e);
-                    } catch (Exception $e) {
-                        $class_name = get_class();
-                        Log::warning("[{$class_name}] " . $e->getMessage());
-                    }
+                    //$log = new Logger('geoip');
+                    //$log->pushHandler(new StreamHandler(storage_path('logs/geoip.log'), Logger::ERROR));
+                    //$log->addError($e);
+                    $class_name = get_class();
+                    Log::warning("[{$class_name}] " . $e->getMessage());
                 }
             }
         }
@@ -285,7 +281,7 @@ class GeoIP
     /**
      * Determine if the location should be cached.
      *
-     * @param string   $ip
+     * @param string $ip
      * @param Location $location
      *
      * @return bool
@@ -310,7 +306,7 @@ class GeoIP
      * Get configuration value.
      *
      * @param string $key
-     * @param mixed  $default
+     * @param mixed $default
      *
      * @return mixed
      */
